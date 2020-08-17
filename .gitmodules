@@ -1,0 +1,3 @@
+[submodule "submodules/rack"]
+	path = submodules/rack
+	url = https://github.com/colugomusic/rack

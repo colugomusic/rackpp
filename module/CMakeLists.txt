@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 project(rack++module)
 
-set(dir_rack ${CMAKE_CURRENT_LIST_DIR}/../../rack)
+set(dir_rack ${CMAKE_CURRENT_LIST_DIR}/../submodules/rack)
 
 list(APPEND HEADERS
 	./include/rack++/module/basic_stereo_effect.h
