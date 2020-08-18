@@ -16,7 +16,7 @@ public:
 	Unit(std::shared_ptr<Module> module, int id);
 	~Unit();
 
-	void process(int num_frames, const float** in, float** out);
+	void process(int num_frames);
 
 	std::string get_name() const;
 	int get_sample_rate() const;

@@ -14,9 +14,9 @@ Unit::~Unit()
 	module_->ptrs.rack_unit_free(handle_);
 }
 
-void Unit::process(int num_frames, const float** in, float** out)
+void Unit::process(int num_frames)
 {
-	module_->ptrs.rack_unit_process(handle_, num_frames, in, out);
+	module_->ptrs.rack_unit_process(handle_, num_frames);
 }
 
 std::string Unit::get_name() const
