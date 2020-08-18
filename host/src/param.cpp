@@ -24,9 +24,14 @@ float Param::get_value() const
 	return module_->ptrs.rack_param_get_value(handle_);
 }
 
-int Param::get_format_hint() const
+Rack_ParamFormatHint Param::get_format_hint() const
 {
 	return module_->ptrs.rack_param_get_format_hint(handle_);
+}
+
+float Param::get_size_hint() const
+{
+	return module_->ptrs.rack_param_get_size_hint(handle_);
 }
 
 float Param::get_min() const

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <rack/rack.h>
 #include "dll.h"
 
 namespace rack {
@@ -36,7 +37,8 @@ public:
 		std::function<const char* (void* handle)> rack_param_get_name;
 		std::function<void(void* handle, float value)> rack_param_set_value;
 		std::function<float(void* handle)> rack_param_get_value;
-		std::function<int(void* handle)> rack_param_get_format_hint;
+		std::function<Rack_ParamFormatHint(void* handle)> rack_param_get_format_hint;
+		std::function<float(void* handle)> rack_param_get_size_hint;
 		std::function<float(void* handle)> rack_param_get_min;
 		std::function<float(void* handle)> rack_param_get_max;
 
@@ -50,7 +52,7 @@ public:
 		std::function<char (void* handle, const float* in)> rack_channel_set_input_buffer;
 		std::function<const float* (void* handle)> rack_channel_get_input_buffer;
 		std::function<char (void* handle, float* out)> rack_channel_set_output_buffer;
-		std::function<const float* (void* handle)> rack_channel_get_output_buffer;
+		std::function<float* (void* handle)> rack_channel_get_output_buffer;
 
 		std::function<const char* (void* handle)> rack_trigger_get_name;
 		std::function<void (void* handle)> rack_trigger_fire;
