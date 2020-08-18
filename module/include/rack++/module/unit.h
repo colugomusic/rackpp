@@ -28,6 +28,7 @@ protected:
 	int sample_rate_ = 44100;
 
 	Param* add_param(const std::string& name = "");
+	Param* add_switch_param(const std::vector<std::string>& options, const std::string& name = "");
 	Channel* add_input_channel(const std::string& name = "");
 	Channel* add_output_channel(const std::string& name = "");
 	Trigger* add_trigger(const std::string& name = "");

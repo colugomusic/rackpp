@@ -54,6 +54,16 @@ float Param::get_max() const
 	return max_;
 }
 
+void Param::set_switch_options(const std::vector<std::string>& options)
+{
+	options_ = options;
+}
+
+const std::vector<std::string>& Param::get_switch_options() const
+{
+	return options_;
+}
+
 void Param::begin_notify()
 {
 	Listenable<ParamListener>::begin_notify();

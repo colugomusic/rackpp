@@ -17,6 +17,20 @@ Param* Unit::add_param(const std::string& name)
 	return param;
 }
 
+Param* Unit::add_switch_param(const std::vector<std::string>& options, const std::string& name)
+{
+	auto param = new Param();
+
+	param->name = name;
+	param->set_format_hint(Rack_ParamFormatHint_Switch);
+	param->set_switch_options(options);
+	param->add_listener(this);
+
+	params_.push_back(param);
+
+	return param;
+}
+
 Channel* Unit::add_input_channel(const std::string& name)
 {
 	auto channel = new Channel(Channel::Type::Input);
