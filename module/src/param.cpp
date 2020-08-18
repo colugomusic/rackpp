@@ -24,6 +24,16 @@ Rack_ParamFormatHint Param::get_format_hint() const
 	return format_;
 }
 
+void Param::set_size_hint(float size)
+{
+	size_ = size;
+}
+
+float Param::get_size_hint() const
+{
+	return size_;
+}
+
 void Param::set_min(float value)
 {
 	min_ = value;
