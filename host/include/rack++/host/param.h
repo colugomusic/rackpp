@@ -21,6 +21,7 @@ public:
 	float get_size_hint() const;
 	float get_min() const;
 	float get_max() const;
+	std::string get_switch_option_name(int id) const;
 };
 
 }}

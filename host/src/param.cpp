@@ -44,4 +44,9 @@ float Param::get_max() const
 	return module_->ptrs.rack_param_get_max(handle_);
 }
 
+std::string Param::get_switch_option_name(int id) const
+{
+	return module_->ptrs.rack_param_get_switch_option_name(handle_, id);
+}
+
 }}

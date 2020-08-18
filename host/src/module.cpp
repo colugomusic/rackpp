@@ -31,6 +31,7 @@ Module::Module(const std::string& path)
 	get(&ptrs.rack_param_get_size_hint, "rack_param_get_size_hint");
 	get(&ptrs.rack_param_get_min, "rack_param_get_min");
 	get(&ptrs.rack_param_get_max, "rack_param_get_max");
+	get(&ptrs.rack_param_get_switch_option_name, "rack_param_get_switch_option_name");
 	get(&ptrs.rack_channel_get_name, "rack_channel_get_name");
 	get(&ptrs.rack_channel_set_buffer_stride, "rack_channel_set_buffer_stride");
 	get(&ptrs.rack_channel_get_buffer_stride, "rack_channel_get_buffer_stride");

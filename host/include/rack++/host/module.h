@@ -41,6 +41,7 @@ public:
 		std::function<float(void* handle)> rack_param_get_size_hint;
 		std::function<float(void* handle)> rack_param_get_min;
 		std::function<float(void* handle)> rack_param_get_max;
+		std::function<const char* (void* handle, int id)> rack_param_get_switch_option_name;
 
 		std::function<const char* (void* handle)> rack_channel_get_name;
 		std::function<void(void* handle, int side, char enabled)> rack_channel_set_enabled;
