@@ -18,6 +18,7 @@ class BasicStereoEffect : public Unit
 	Channel* out_L_ = nullptr;
 	Channel* out_R_ = nullptr;
 
+	virtual void update() {};
 	virtual void process_left(float in, float* out) = 0;
 	virtual void process_right(float in, float* out) = 0;
 
