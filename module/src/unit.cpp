@@ -156,6 +156,8 @@ int Unit::get_sample_rate() const
 
 void Unit::set_sample_rate(int sample_rate)
 {
+	if (sample_rate == sample_rate_) return;
+
 	sample_rate_ = sample_rate;
 
 	for (auto sp : smooth_params_)
