@@ -1,3 +1,6 @@
 [submodule "submodules/rack"]
 	path = submodules/rack
 	url = https://github.com/colugomusic/rack
+[submodule "submodules/snd"]
+	path = submodules/snd
+	url = git@github.com:colugomusic/snd.git
