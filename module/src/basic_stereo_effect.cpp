@@ -38,7 +38,7 @@ void BasicStereoEffect::process(int num_frames)
 
 	for (int i = 0; i < num_frames; i++)
 	{
-		update();
+		update_smooth_params();
 
 		int in_idx = 0;
 		int out_idx = 0;

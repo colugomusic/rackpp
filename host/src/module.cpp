@@ -27,6 +27,7 @@ Module::Module(const std::string& path)
 	get(&ptrs.rack_param_get_name, "rack_param_get_name");
 	get(&ptrs.rack_param_set_value, "rack_param_set_value");
 	get(&ptrs.rack_param_get_value, "rack_param_get_value");
+	get(&ptrs.rack_param_get_default_value, "rack_param_get_default_value");
 	get(&ptrs.rack_param_get_format_hint, "rack_param_get_format_hint");
 	get(&ptrs.rack_param_get_size_hint, "rack_param_get_size_hint");
 	get(&ptrs.rack_param_get_min, "rack_param_get_min");

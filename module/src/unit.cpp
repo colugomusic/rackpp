@@ -1,5 +1,6 @@
 #include "module/channel.h"
 #include "module/param.h"
+#include "module/smooth_param.h"
 #include "module/trigger.h"
 #include "module/unit.h"
 
@@ -9,7 +10,7 @@ Param* Unit::add_param(const std::string& name)
 {
 	auto param = new Param();
 
-	param->name = name;
+	param->set_name(name);
 	param->add_listener(this);
 
 	params_.push_back(param);
@@ -17,11 +18,24 @@ Param* Unit::add_param(const std::string& name)
 	return param;
 }
 
+SmoothParam* Unit::add_smooth_param(const std::string& name)
+{
+	auto sp = new SmoothParam();
+
+	sp->set_name(name);
+	static_cast<Listenable<SmoothParamListener>*>(sp)->add_listener(this);
+	
+	params_.push_back(sp);
+	smooth_params_.push_back(sp);
+
+	return sp;
+}
+
 Param* Unit::add_switch_param(const std::vector<std::string>& options, const std::string& name)
 {
 	auto param = new Param();
 
-	param->name = name;
+	param->set_name(name);
 	param->set_format_hint(Rack_ParamFormatHint_Switch);
 	param->set_switch_options(options);
 	param->add_listener(this);
@@ -84,6 +98,11 @@ Unit::~Unit()
 		delete param;
 	}
 
+	for (auto param : smooth_params_)
+	{
+		delete param;
+	}
+
 	for (auto trigger : triggers_)
 	{
 		delete trigger;
@@ -139,12 +158,25 @@ void Unit::set_sample_rate(int sample_rate)
 {
 	sample_rate_ = sample_rate;
 
-	on_sample_rate_changed();
+	for (auto sp : smooth_params_)
+	{
+		sp->set_sample_rate(sample_rate_);
+	}
+
+	on_sample_rate_changed(sample_rate);
 }
 
 const std::string& Unit::get_name() const
 {
 	return name_;
+}
+
+void Unit::update_smooth_params()
+{
+	for (auto sp : smooth_params_)
+	{
+		sp->update();
+	}
 }
 
 }

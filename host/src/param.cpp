@@ -1,3 +1,6 @@
+#include "..\..\module\include\rack++\module\param.h"
+#include "..\..\module\include\rack++\module\param.h"
+#include "..\..\module\include\rack++\module\param.h"
 #include "host/param.h"
 
 namespace rack {
@@ -22,6 +25,11 @@ void Param::set_value(float value)
 float Param::get_value() const
 {
 	return module_->ptrs.rack_param_get_value(handle_);
+}
+
+float Param::get_default_value() const
+{
+	return module_->ptrs.rack_param_get_default_value(handle_);
 }
 
 Rack_ParamFormatHint Param::get_format_hint() const

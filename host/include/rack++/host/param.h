@@ -17,6 +17,7 @@ public:
 
 	void set_value(float value);
 	float get_value() const;
+	float get_default_value() const;
 	Rack_ParamFormatHint get_format_hint() const;
 	float get_size_hint() const;
 	float get_min() const;
