@@ -19,6 +19,18 @@ void Unit::process(int num_frames)
 	module_->ptrs.rack_unit_process(handle_, num_frames);
 }
 
+Unit& Unit::copy(const Unit& rhs)
+{
+	module_->ptrs.rack_unit_copy(handle_, rhs.handle_);
+
+	return *this;
+}
+
+void Unit::reset()
+{
+	module_->ptrs.rack_unit_reset(handle_);
+}
+
 std::string Unit::get_name() const
 {
 	return module_->ptrs.rack_unit_get_name(handle_);

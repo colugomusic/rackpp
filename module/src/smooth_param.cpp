@@ -46,4 +46,18 @@ void SmoothParam::begin_notify()
 	}
 }
 
+void SmoothParam::copy(const SmoothParam& rhs)
+{
+	Param::copy(rhs);
+
+	smoother_.copy(rhs.smoother_);
+}
+
+void SmoothParam::reset()
+{
+	Param::reset();
+
+	smoother_.reset();
+}
+
 }

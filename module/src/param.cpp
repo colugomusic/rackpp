@@ -2,6 +2,16 @@
 
 namespace rack {
 
+void Param::copy(const Param& rhs)
+{
+	value_.store(rhs.value_);
+}
+
+void Param::reset()
+{
+	value_ = default_value_;
+}
+
 void Param::set_name(const std::string& name)
 {
 	name_ = name;

@@ -33,6 +33,8 @@ public:
 		std::function<int(void* handle)> rack_unit_get_sample_rate;
 		std::function<void(void* handle, int sample_rate)> rack_unit_set_sample_rate;
 		std::function<void* (void* handle, int id)> rack_unit_get_param;
+		std::function<char (void* dest, void* source)> rack_unit_copy;
+		std::function<void(void* handle)> rack_unit_reset;
 
 		std::function<const char* (void* handle)> rack_param_get_name;
 		std::function<void(void* handle, float value)> rack_param_set_value;

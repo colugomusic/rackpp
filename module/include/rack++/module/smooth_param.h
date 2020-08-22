@@ -17,6 +17,9 @@ public:
 
 	SmoothParam();
 
+	void copy(const SmoothParam& rhs);
+	void reset();
+
 	void add_callback(std::function<void(float)> callback);
 	void set_sample_rate(int SR);
 	void update();
