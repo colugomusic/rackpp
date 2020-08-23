@@ -9,6 +9,7 @@ list(APPEND HEADERS
 	./include/rack++/host/channel.h
 	./include/rack++/host/dll.h
 	./include/rack++/host/module.h
+	./include/rack++/host/module_loader.h
 	./include/rack++/host/param.h
 	./include/rack++/host/unit.h
 )
@@ -17,6 +18,7 @@ list(APPEND SRC
 	./src/channel.cpp
 	./src/dll.cpp
 	./src/module.cpp
+	./src/module_loader.cpp
 	./src/param.cpp
 	./src/unit.cpp
 )

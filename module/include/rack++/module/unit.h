@@ -30,8 +30,8 @@ protected:
 
 	int sample_rate_ = 44100;
 
-	Param* add_param(const std::string& name = "");
-	SmoothParam* add_smooth_param(const std::string& name = "");
+	Param* add_param(float default_value, const std::string& name = "");
+	SmoothParam* add_smooth_param(float default_value, const std::string& name = "");
 	Param* add_switch_param(const std::vector<std::string>& options, const std::string& name = "");
 	Channel* add_input_channel(const std::string& name = "");
 	Channel* add_output_channel(const std::string& name = "");
@@ -45,6 +45,8 @@ public:
 	~Unit();
 
 	virtual void process(int num_frames) = 0;
+	virtual void copy(const Unit& rhs);
+	virtual void reset();
 
 	int get_num_params() const;
 	Param* get_param(int id) const;

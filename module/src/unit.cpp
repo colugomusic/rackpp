@@ -6,10 +6,12 @@
 
 namespace rack {
 
-Param* Unit::add_param(const std::string& name)
+Param* Unit::add_param(float default_value, const std::string& name)
 {
 	auto param = new Param();
 
+	param->set_default_value(default_value);
+	param->set(default_value);
 	param->set_name(name);
 	param->add_listener(this);
 
@@ -18,11 +20,14 @@ Param* Unit::add_param(const std::string& name)
 	return param;
 }
 
-SmoothParam* Unit::add_smooth_param(const std::string& name)
+SmoothParam* Unit::add_smooth_param(float default_value, const std::string& name)
 {
 	auto sp = new SmoothParam();
 
+	sp->set_default_value(default_value);
+	sp->set(default_value);
 	sp->set_name(name);
+
 	static_cast<Listenable<SmoothParamListener>*>(sp)->add_listener(this);
 	
 	params_.push_back(sp);
@@ -178,6 +183,32 @@ void Unit::update_smooth_params()
 	for (auto sp : smooth_params_)
 	{
 		sp->update();
+	}
+}
+
+void Unit::copy(const Unit& rhs)
+{
+	for (int i = 0; i < params_.size(); i++)
+	{
+		params_[i]->copy(*(rhs.params_[i]));
+	}
+
+	for (int i = 0; i < smooth_params_.size(); i++)
+	{
+		smooth_params_[i]->copy(*(rhs.smooth_params_[i]));
+	}
+}
+
+void Unit::reset()
+{
+	for (auto p : params_)
+	{
+		p->reset();
+	}
+
+	for (auto sp : smooth_params_)
+	{
+		sp->reset();
 	}
 }
 
