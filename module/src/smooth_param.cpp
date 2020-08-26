@@ -55,8 +55,7 @@ void SmoothParam::copy(const SmoothParam& rhs)
 
 void SmoothParam::reset()
 {
-	Param::reset();
-
+	smoother_(get());
 	smoother_.reset();
 }
 

@@ -14,6 +14,11 @@ Unit::~Unit()
 	module_->ptrs.rack_unit_free(handle_);
 }
 
+Unit::operator bool() const
+{
+	return handle_;
+}
+
 void Unit::process(int num_frames)
 {
 	module_->ptrs.rack_unit_process(handle_, num_frames);

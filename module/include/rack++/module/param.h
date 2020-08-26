@@ -23,7 +23,6 @@ class Param : public Listenable<ParamListener>
 public:
 
 	void copy(const Param& rhs);
-	void reset();
 
 	void set_name(const std::string& name);
 	const std::string& get_name() const;

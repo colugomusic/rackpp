@@ -16,6 +16,8 @@ public:
 	Unit(std::shared_ptr<Module> module, int id);
 	~Unit();
 
+	operator bool() const;
+
 	void process(int num_frames);
 	Unit& copy(const Unit& rhs);
 	void reset();

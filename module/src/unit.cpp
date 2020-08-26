@@ -201,11 +201,6 @@ void Unit::copy(const Unit& rhs)
 
 void Unit::reset()
 {
-	for (auto p : params_)
-	{
-		p->reset();
-	}
-
 	for (auto sp : smooth_params_)
 	{
 		sp->reset();
