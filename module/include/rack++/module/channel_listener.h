@@ -7,7 +7,6 @@ class ChannelListener {
 
 	virtual void on_channel_input_buffer_changed(const Channel* c) {};
 	virtual void on_channel_output_buffer_changed(const Channel* c) {};
-	virtual void on_channel_buffer_stride_changed(const Channel* c) {};
 };
 
 }

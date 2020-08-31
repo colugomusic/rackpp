@@ -2,6 +2,10 @@
 
 #include "unit.h"
 
+#pragma warning(push, 0)
+#include <DSP/MLDSPOps.h>
+#pragma warning(pop)
+
 namespace rack {
 
 /// base class for simple stereo effects with two inputs and two outputs
@@ -18,15 +22,13 @@ class BasicStereoEffect : public Unit
 	Channel* out_L_ = nullptr;
 	Channel* out_R_ = nullptr;
 
-	virtual void update() {};
-	virtual void process_left(float in, float* out) = 0;
-	virtual void process_right(float in, float* out) = 0;
+	virtual ml::DSPVectorArray<2> operator()(const ml::DSPVectorArray<2>& in) = 0;
 
 public:
 
 	BasicStereoEffect(const std::string& name);
 
-	virtual void process(int num_frames) override;
+	virtual void process(int num_frames);
 };
 
 }

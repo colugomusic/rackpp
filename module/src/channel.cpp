@@ -39,25 +39,12 @@ float* Channel::get_output_buffer() const
 	return output_buffer_;
 }
 
-void Channel::set_buffer_stride(int stride)
-{
-	buffer_stride_ = stride;
-
-	notify(&ChannelListener::on_channel_buffer_stride_changed, this);
-}
-
-int Channel::get_buffer_stride() const
-{
-	return buffer_stride_;
-}
-
 void Channel::begin_notify()
 {
 	Listenable<ChannelListener>::begin_notify();
 
 	notify(&ChannelListener::on_channel_input_buffer_changed, this);
 	notify(&ChannelListener::on_channel_output_buffer_changed, this);
-	notify(&ChannelListener::on_channel_buffer_stride_changed, this);
 }
 
 }

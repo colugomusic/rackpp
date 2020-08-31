@@ -3,7 +3,7 @@
 namespace rack {
 
 SmoothParam::SmoothParam()
-	: smoother_(44100, 0.02f, 1000.0f, std::bind(&SmoothParam::smoother_callback, this, std::placeholders::_1))
+	: smoother_(44100, 0.02f, std::bind(&SmoothParam::smoother_callback, this, std::placeholders::_1))
 {
 }
 

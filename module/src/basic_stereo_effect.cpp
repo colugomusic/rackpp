@@ -31,43 +31,34 @@ void BasicStereoEffect::process(int num_frames)
 	const auto out_L_buffer = out_L_->get_output_buffer();
 	const auto out_R_buffer = out_R_->get_output_buffer();
 
-	const auto in_L_stride = in_L_->get_buffer_stride();
-	const auto in_R_stride = in_R_->get_buffer_stride();
-	const auto out_L_stride = out_L_->get_buffer_stride();
-	const auto out_R_stride = out_R_->get_buffer_stride();
+	update_smooth_params();
 
-	for (int i = 0; i < num_frames; i++)
+	ml::DSPVectorArray<2> in;
+
+	if (out_L_buffer)
 	{
-		update_smooth_params();
-
-		int in_idx = 0;
-		int out_idx = 0;
-
-		float value[2] = { 0.0f, 0.0f };
-
-		if (out_L_buffer || (!in_R_buffer && in_R_buffer))
+		if (in_L_buffer)
 		{
-			if (in_L_buffer)
-			{
-				process_left(in_L_buffer[i * in_L_stride], &(value[0]));
-			}
+			ml::load(in.row(0), in_L_buffer);
 		}
-
-		if (out_R_buffer)
-		{
-			if (in_R_buffer)
-			{
-				process_right(in_R_buffer[i * in_R_stride], &(value[1]));
-			}
-			else if (in_L_buffer)
-			{
-				value[1] = value[0];
-			}
-		}
-
-		if (out_L_buffer) out_L_buffer[i * out_L_stride] = value[0];
-		if (out_R_buffer) out_R_buffer[i * out_R_stride] = value[1];
 	}
+
+	if (out_R_buffer)
+	{
+		if (in_R_buffer)
+		{
+			ml::load(in.row(1), in_R_buffer);
+		}
+		else if (in_L_buffer)
+		{
+			ml::load(in.row(1), in_L_buffer);
+		}
+	}
+
+	auto out = this->operator()(in);
+
+	ml::store(out.constRow(0), out_L_buffer);
+	ml::store(out.constRow(1), out_R_buffer);
 }
 
 }

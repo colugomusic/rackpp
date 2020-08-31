@@ -35,8 +35,6 @@ public:
 	bool set_output_buffer(float* out);
 	const float* get_input_buffer() const;
 	float* get_output_buffer() const;
-	void set_buffer_stride(int stride);
-	int get_buffer_stride() const;
 
 	void begin_notify() override;
 };

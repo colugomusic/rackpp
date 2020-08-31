@@ -25,8 +25,6 @@ Module::Module(const std::string& path)
 	get(&ptrs.rack_unit_get_sample_rate, "rack_unit_get_sample_rate");
 	get(&ptrs.rack_unit_set_sample_rate, "rack_unit_set_sample_rate");
 	get(&ptrs.rack_unit_get_param, "rack_unit_get_param");
-	get(&ptrs.rack_unit_copy, "rack_unit_copy");
-	get(&ptrs.rack_unit_reset, "rack_unit_reset");
 
 	get(&ptrs.rack_param_get_name, "rack_param_get_name");
 	get(&ptrs.rack_param_set_value, "rack_param_set_value");
@@ -39,8 +37,6 @@ Module::Module(const std::string& path)
 	get(&ptrs.rack_param_get_switch_option_name, "rack_param_get_switch_option_name");
 
 	get(&ptrs.rack_channel_get_name, "rack_channel_get_name");
-	get(&ptrs.rack_channel_set_buffer_stride, "rack_channel_set_buffer_stride");
-	get(&ptrs.rack_channel_get_buffer_stride, "rack_channel_get_buffer_stride");
 	get(&ptrs.rack_channel_set_input_buffer, "rack_channel_set_input_buffer");
 	get(&ptrs.rack_channel_get_input_buffer, "rack_channel_get_input_buffer");
 	get(&ptrs.rack_channel_set_output_buffer, "rack_channel_set_output_buffer");

@@ -19,8 +19,6 @@ public:
 	operator bool() const;
 
 	void process(int num_frames);
-	Unit& copy(const Unit& rhs);
-	void reset();
 
 	std::string get_name() const;
 	int get_sample_rate() const;
