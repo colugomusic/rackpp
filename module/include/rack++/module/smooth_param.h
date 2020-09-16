@@ -4,27 +4,28 @@
 #include "param.h"
 #include "smooth_param_listener.h"
 
+#pragma warning(push, 0)
+#include <DSP/MLDSPGens.h>
+#pragma warning(pop)
+
 namespace rack {
 
-class SmoothParam : public Param, public Listenable<SmoothParamListener>
+class SmoothParam : public Param
 {
-	snd::control::Smoother smoother_;
-	std::deque<std::function<void(float)>> callbacks_;
-
-	void smoother_callback(float v);
+	ml::LinearGlide glide_;
+	ml::DSPVector cache_;
+	std::function<ml::DSPVector(const ml::DSPVector&)> transform_;
+	bool cache_init_ = false;
 
 public:
 
-	SmoothParam();
+	SmoothParam(float default_value, int frames = kFloatsPerDSPVector * 8);
 
-	void copy(const SmoothParam& rhs);
-	void reset();
+	void set_transform(std::function<ml::DSPVector(const ml::DSPVector&)> transform) { transform_ = transform; }
 
-	void add_callback(std::function<void(float)> callback);
-	void set_sample_rate(int SR);
-	void update();
+	void set_cache_dirty() { cache_init_ = false; }
 
-	void begin_notify();
+	const ml::DSPVector& operator()();
 };
 
 }

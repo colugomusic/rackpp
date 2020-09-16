@@ -66,7 +66,7 @@ Channel Unit::get_output_channel(int id) const
 
 Param Unit::get_param(int id)
 {
-	return Param(module_, module_->ptrs.rack_unit_get_param(handle_, id));
+	return Param(module_, id, module_->ptrs.rack_unit_get_param(handle_, id));
 }
 
 }}

@@ -24,6 +24,11 @@ void Param::set(float value)
 	notify(&ParamListener::on_param_value_changed, this, value);
 }
 
+void Param::set(const float* buffer)
+{
+	buffer_ = buffer;
+}
+
 float Param::get() const
 {
 	return value_;

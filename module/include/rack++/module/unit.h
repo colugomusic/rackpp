@@ -37,8 +37,6 @@ protected:
 	Channel* add_output_channel(const std::string& name = "");
 	Trigger* add_trigger(const std::string& name = "");
 
-	void update_smooth_params();
-
 public:
 
 	Unit(const std::string name = "");
@@ -46,7 +44,6 @@ public:
 
 	virtual void process(int num_frames) = 0;
 	virtual void copy(const Unit& rhs);
-	virtual void reset();
 
 	int get_num_params() const;
 	Param* get_param(int id) const;

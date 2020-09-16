@@ -31,8 +31,6 @@ void BasicStereoEffect::process(int num_frames)
 	const auto out_L_buffer = out_L_->get_output_buffer();
 	const auto out_R_buffer = out_R_->get_output_buffer();
 
-	update_smooth_params();
-
 	ml::DSPVectorArray<2> in;
 
 	if (out_L_buffer)

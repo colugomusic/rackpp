@@ -2,61 +2,35 @@
 
 namespace rack {
 
-SmoothParam::SmoothParam()
-	: smoother_(44100, 0.02f, std::bind(&SmoothParam::smoother_callback, this, std::placeholders::_1))
+SmoothParam::SmoothParam(float default_value, int frames)
 {
+	glide_.setGlideTimeInSamples(float(frames));
+
+	set_default_value(default_value);
+	set(default_value);
+
+	glide_.setValue(default_value);
 }
 
-void SmoothParam::add_callback(std::function<void(float)> callback)
+const ml::DSPVector& SmoothParam::operator()()
 {
-	callbacks_.push_back(callback);
-}
+	auto glided = glide_(Param::get());
 
-void SmoothParam::set_sample_rate(int SR)
-{
-	smoother_.set_sample_rate(SR);
-}
-
-void SmoothParam::update()
-{
-	smoother_(get());
-}
-
-void SmoothParam::smoother_callback(float v)
-{
-	Listenable<SmoothParamListener>::notify(&SmoothParamListener::on_smooth_param_value_changed, this, v);
-
-	for (auto cb : callbacks_)
+	if (!transform_)
 	{
-		cb(v);
+		cache_ = glided;
+
+		return cache_;
 	}
-}
 
-void SmoothParam::begin_notify()
-{
-	Param::begin_notify();
-
-	const auto value = get();
-
-	Listenable<SmoothParamListener>::notify(&SmoothParamListener::on_smooth_param_value_changed, this, value);
-
-	for (auto cb : callbacks_)
+	if (!cache_init_ || cache_[kFloatsPerDSPVector - 1] != glided[kFloatsPerDSPVector - 1])
 	{
-		cb(value);
+		cache_init_ = true;
+
+		cache_ = transform_(glided);
 	}
-}
 
-void SmoothParam::copy(const SmoothParam& rhs)
-{
-	Param::copy(rhs);
-
-	smoother_.copy(rhs.smoother_);
-}
-
-void SmoothParam::reset()
-{
-	smoother_(get());
-	smoother_.reset();
+	return cache_;
 }
 
 }

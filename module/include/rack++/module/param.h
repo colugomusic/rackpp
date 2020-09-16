@@ -18,6 +18,7 @@ class Param : public Listenable<ParamListener>
 	float min_ = 0.0f;
 	float max_ = 1.0f;
 	std::atomic<float> value_ = 0.0f;
+	std::atomic<const float*> buffer_ = nullptr;
 	float default_value_ = 0.0f;
 
 public:
@@ -28,7 +29,9 @@ public:
 	const std::string& get_name() const;
 
 	void set(float value);
+	void set(const float* buffer);
 	float get() const;
+	const float* get_buffer() const { return buffer_; }
 
 	void set_default_value(float default_value);
 	float get_default_value() const;

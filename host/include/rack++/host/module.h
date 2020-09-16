@@ -36,6 +36,7 @@ public:
 
 		std::function<const char* (void* handle)> rack_param_get_name;
 		std::function<void(void* handle, float value)> rack_param_set_value;
+		std::function<void(void* handle, const float* buffer)> rack_param_set_value_buffer;
 		std::function<float(void* handle)> rack_param_get_value;
 		std::function<float(void* handle)> rack_param_get_default_value;
 		std::function<Rack_ParamFormatHint(void* handle)> rack_param_get_format_hint;

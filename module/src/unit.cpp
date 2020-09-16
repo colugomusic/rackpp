@@ -22,13 +22,9 @@ Param* Unit::add_param(float default_value, const std::string& name)
 
 SmoothParam* Unit::add_smooth_param(float default_value, const std::string& name)
 {
-	auto sp = new SmoothParam();
+	auto sp = new SmoothParam(default_value);
 
-	sp->set_default_value(default_value);
-	sp->set(default_value);
 	sp->set_name(name);
-
-	static_cast<Listenable<SmoothParamListener>*>(sp)->add_listener(this);
 	
 	params_.push_back(sp);
 	smooth_params_.push_back(sp);
@@ -165,11 +161,6 @@ void Unit::set_sample_rate(int sample_rate)
 
 	sample_rate_ = sample_rate;
 
-	for (auto sp : smooth_params_)
-	{
-		sp->set_sample_rate(sample_rate_);
-	}
-
 	on_sample_rate_changed(sample_rate);
 }
 
@@ -178,32 +169,11 @@ const std::string& Unit::get_name() const
 	return name_;
 }
 
-void Unit::update_smooth_params()
-{
-	for (auto sp : smooth_params_)
-	{
-		sp->update();
-	}
-}
-
 void Unit::copy(const Unit& rhs)
 {
 	for (int i = 0; i < params_.size(); i++)
 	{
 		params_[i]->copy(*(rhs.params_[i]));
-	}
-
-	for (int i = 0; i < smooth_params_.size(); i++)
-	{
-		smooth_params_[i]->copy(*(rhs.smooth_params_[i]));
-	}
-}
-
-void Unit::reset()
-{
-	for (auto sp : smooth_params_)
-	{
-		sp->reset();
 	}
 }
 

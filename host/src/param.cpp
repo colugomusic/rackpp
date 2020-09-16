@@ -6,10 +6,16 @@
 namespace rack {
 namespace host {
 
-Param::Param(std::shared_ptr<Module> module, void* handle)
+Param::Param(std::shared_ptr<Module> module, int index, void* handle)
 	: module_(module)
 	, handle_(handle)
+	, index_(index)
 {
+}
+
+int Param::get_index() const
+{
+	return index_;
 }
 
 std::string Param::get_name() const
@@ -20,6 +26,11 @@ std::string Param::get_name() const
 void Param::set_value(float value)
 {
 	module_->ptrs.rack_param_set_value(handle_, value);
+}
+
+void Param::set_value_buffer(const float* buffer)
+{
+	module_->ptrs.rack_param_set_value_buffer(handle_, buffer);
 }
 
 float Param::get_value() const
