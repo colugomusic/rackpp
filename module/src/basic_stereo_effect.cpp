@@ -24,7 +24,7 @@ BasicStereoEffect::BasicStereoEffect(const std::string& name)
 	out_R_->begin_notify();
 }
 
-void BasicStereoEffect::process(int num_frames)
+void BasicStereoEffect::effect_process()
 {
 	const auto in_L_buffer = in_L_->get_input_buffer();
 	const auto in_R_buffer = in_R_->get_input_buffer();

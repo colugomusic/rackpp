@@ -24,11 +24,12 @@ class BasicStereoEffect : public Unit
 
 	virtual ml::DSPVectorArray<2> operator()(const ml::DSPVectorArray<2>& in) = 0;
 
+	virtual void effect_process();
+
 public:
 
 	BasicStereoEffect(const std::string& name);
 
-	virtual void process(int num_frames);
 };
 
 }

@@ -26,6 +26,8 @@ class Unit : public ChannelListener, public ParamListener, public SmoothParamLis
 
 	virtual void on_sample_rate_changed(int new_SR) {}
 
+	std::uint32_t buffer_count_ = 0;
+
 protected:
 
 	int sample_rate_ = 44100;
@@ -37,12 +39,19 @@ protected:
 	Channel* add_output_channel(const std::string& name = "");
 	Trigger* add_trigger(const std::string& name = "");
 
+	bool is_first_buffer() const { return buffer_count_ <= 1; }
+
+	virtual void effect_process() = 0;
+	virtual void effect_clear() = 0;
+
 public:
 
 	Unit(const std::string name = "");
 	~Unit();
 
-	virtual void process(int num_frames) = 0;
+	void process();
+	void clear();
+
 	virtual void copy(const Unit& rhs);
 
 	int get_num_params() const;

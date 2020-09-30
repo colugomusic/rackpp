@@ -19,9 +19,14 @@ Unit::operator bool() const
 	return handle_;
 }
 
-void Unit::process(int num_frames)
+void Unit::clear()
 {
-	module_->ptrs.rack_unit_process(handle_, num_frames);
+	module_->ptrs.rack_unit_clear(handle_);
+}
+
+void Unit::process()
+{
+	module_->ptrs.rack_unit_process(handle_);
 }
 
 std::string Unit::get_name() const

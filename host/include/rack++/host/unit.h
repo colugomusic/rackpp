@@ -18,7 +18,8 @@ public:
 
 	operator bool() const;
 
-	void process(int num_frames);
+	void clear();
+	void process();
 
 	std::string get_name() const;
 	int get_sample_rate() const;

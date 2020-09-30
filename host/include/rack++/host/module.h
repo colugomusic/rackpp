@@ -24,7 +24,8 @@ public:
 		std::function<void* (int id)> rack_unit_make;
 		std::function<void(void* handle)> rack_unit_free;
 		std::function<const char* (void* handle)> rack_unit_get_name;
-		std::function<void(void* handle, int num_frames)> rack_unit_process;
+		std::function<void(void* handle)> rack_unit_clear;
+		std::function<void(void* handle)> rack_unit_process;
 		std::function<int(void* handle)> rack_unit_get_num_params;
 		std::function<int(void* handle)> rack_unit_get_num_input_channels;
 		std::function<int(void* handle)> rack_unit_get_num_output_channels;

@@ -177,4 +177,18 @@ void Unit::copy(const Unit& rhs)
 	}
 }
 
+void Unit::process()
+{
+	buffer_count_++;
+
+	effect_process();
+}
+
+void Unit::clear()
+{
+	buffer_count_ = 0;
+
+	effect_clear();
+}
+
 }

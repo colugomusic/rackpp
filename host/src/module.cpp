@@ -16,6 +16,7 @@ Module::Module(const std::string& path)
 	get(&ptrs.rack_unit_make, "rack_unit_make");
 	get(&ptrs.rack_unit_free, "rack_unit_free");
 	get(&ptrs.rack_unit_get_name, "rack_unit_get_name");
+	get(&ptrs.rack_unit_clear, "rack_unit_clear");
 	get(&ptrs.rack_unit_process, "rack_unit_process");
 	get(&ptrs.rack_unit_get_num_params, "rack_unit_get_num_params");
 	get(&ptrs.rack_unit_get_num_input_channels, "rack_unit_get_num_input_channels");
