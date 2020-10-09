@@ -23,7 +23,7 @@ const ml::DSPVector& SmoothParam::operator()()
 		return cache_;
 	}
 
-	if (!cache_init_ || cache_[kFloatsPerDSPVector - 1] != glided[kFloatsPerDSPVector - 1])
+	if (!cache_init_ || (cache_[0] != glided[0]) && (cache_[kFloatsPerDSPVector - 1] != glided[kFloatsPerDSPVector - 1]))
 	{
 		cache_init_ = true;
 
