@@ -12,25 +12,13 @@ SmoothParam::SmoothParam(float default_value, int frames)
 	glide_.setValue(default_value);
 }
 
-const ml::DSPVector& SmoothParam::operator()()
+ml::DSPVector SmoothParam::operator()()
 {
-	auto glided = glide_(Param::get());
+	auto value = glide_(Param::get());
 
-	if (!transform_)
-	{
-		cache_ = glided;
+	if (transform_) value = transform_(value);
 
-		return cache_;
-	}
-
-	if (!cache_init_ || (cache_[0] != glided[0]) && (cache_[kFloatsPerDSPVector - 1] != glided[kFloatsPerDSPVector - 1]))
-	{
-		cache_init_ = true;
-
-		cache_ = transform_(glided);
-	}
-
-	return cache_;
+	return value;
 }
 
 }

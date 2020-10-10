@@ -13,9 +13,7 @@ namespace rack {
 class SmoothParam : public Param
 {
 	ml::LinearGlide glide_;
-	ml::DSPVector cache_;
 	std::function<ml::DSPVector(const ml::DSPVector&)> transform_;
-	bool cache_init_ = false;
 
 public:
 
@@ -23,9 +21,7 @@ public:
 
 	void set_transform(std::function<ml::DSPVector(const ml::DSPVector&)> transform) { transform_ = transform; }
 
-	void set_cache_dirty() { cache_init_ = false; }
-
-	const ml::DSPVector& operator()();
+	ml::DSPVector operator()();
 };
 
 }
