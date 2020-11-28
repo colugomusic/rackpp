@@ -1,6 +1,3 @@
-#include "..\..\module\include\rack++\module\param.h"
-#include "..\..\module\include\rack++\module\param.h"
-#include "..\..\module\include\rack++\module\param.h"
 #include "host/param.h"
 
 namespace rack {
