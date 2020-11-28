@@ -28,6 +28,10 @@ source_group(TREE ${CMAKE_CURRENT_LIST_DIR}/src PREFIX src FILES ${SRC})
 
 add_library(${PROJECT_NAME} STATIC ${SRC} ${HEADERS})
 
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    CXX_STANDARD 17
+)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
 	${dir_rack}/include
 )
