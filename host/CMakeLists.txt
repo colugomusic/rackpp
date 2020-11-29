@@ -3,7 +3,7 @@ project(rack++host)
 
 set(dir_rack ${CMAKE_CURRENT_LIST_DIR}/../submodules/rack)
 
-find_package(Boost REQUIRED)
+#find_package(Boost REQUIRED)
 
 list(APPEND HEADERS
 	./include/rack++/host/channel.h
