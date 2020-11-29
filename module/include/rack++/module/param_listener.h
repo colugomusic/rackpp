@@ -4,6 +4,8 @@
 
 namespace rack {
 
+class Param;
+
 class ParamListener {
 	friend class Param;
 

@@ -2,6 +2,8 @@
 
 namespace rack {
 
+class Channel;
+
 class ChannelListener {
 	friend class Channel;
 

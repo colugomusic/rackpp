@@ -2,6 +2,8 @@
 
 namespace rack {
 
+class SmoothParam;
+
 class SmoothParamListener {
 	friend class SmoothParam;
 
