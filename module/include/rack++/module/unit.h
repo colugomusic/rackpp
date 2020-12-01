@@ -47,7 +47,7 @@ protected:
 public:
 
 	Unit(const std::string name = "");
-	~Unit();
+	virtual ~Unit();
 
 	void process();
 	void clear();

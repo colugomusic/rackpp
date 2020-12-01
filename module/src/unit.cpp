@@ -25,7 +25,7 @@ SmoothParam* Unit::add_smooth_param(float default_value, const std::string& name
 	auto sp = new SmoothParam(default_value);
 
 	sp->set_name(name);
-	
+    
 	params_.push_back(sp);
 	smooth_params_.push_back(sp);
 
@@ -95,11 +95,6 @@ Unit::~Unit()
 	}
 
 	for (auto param : params_)
-	{
-		delete param;
-	}
-
-	for (auto param : smooth_params_)
 	{
 		delete param;
 	}

@@ -22,6 +22,8 @@ class Param : public Listenable<ParamListener>
 	float default_value_ = 0.0f;
 
 public:
+    
+    virtual ~Param() {}
 
 	void copy(const Param& rhs);
 
